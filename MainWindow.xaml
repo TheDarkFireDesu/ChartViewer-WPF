@@ -27,6 +27,9 @@
             <ComboBoxItem Content="Линейная"/>
             <ComboBoxItem Content="Квадратичная"/>
             <ComboBoxItem Content="Экспонента"/>
+            <ComboBoxItem Content="Показательная"/>
+            <ComboBoxItem Content="Степенная"/>
+            <ComboBoxItem Content="Логарифмическая"/>
             <ComboBoxItem Content="Логарифмическая (десятичн.)"/>
             <ComboBoxItem Content="Логарифмическая (натурал.)"/>
             <ComboBoxItem Content="Синусоида"/>
