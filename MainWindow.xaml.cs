@@ -7,28 +7,36 @@ using ScottPlot;
 
 /*
 FUNCTION:
-    BASIC - COMPLETE (1 / 1)
-    POLYNOMINAL - ( 2 / 3)
+    BASIC - (1 / 1)
+    POLYNOMINAL - ( 3 / 3)
     EXPONENTIAL - ( 3 / 3)
     LOGARITHMIC - ( 3 / 3)
-    POWER - (1 / 3)
+    POWER - (1 / 1)
+
+    SPECIAL - (1 / 5)
     
-    BASE TRIGONOMETRIC - (3 / 5)
-    ADVANCED TRIGONOMETRIC - ( 0 / x)
-    REVERSE TRIGONOMETRIC - (1 / x)
+    BASE TRIGONOMETRIC - (5 / 5)
+    ADVANCED TRIGONOMETRIC - ( 0 / 5)
+    REVERSE TRIGONOMETRIC - (3 / 5)
+
+    HYPERBOLIC - (0 / 5)
+    REVERSE
 END.
 
 NUMBER OF FUNC:
     1 - LINEAR
+
     2 - QUADRATIC
     3 - CUBIC
     4 - BIQUAD
+
     5 - EXP
     6 - EXPONENTIAL
 
     7 - LOG
     8 - LOG10
     9 - LN
+
     10 - POW
 
     11 - SIN
@@ -44,6 +52,30 @@ NUMBER OF FUNC:
     20 - ARCCTG
     21 - ARCSEC
     22 - ARCCSC
+
+    24 - ABS
+
+    25 - HYPER SIN
+    26 - HYPER COS
+    27 - HYPER TG
+    28 - HYPER CTG
+    29 - HYPER SEC
+    30 - HYPER CSC
+    
+    31 - ARC HYPER SIN
+    32 - ARC HYPER COS
+    33 - ARC HYPER TG
+    34 - ARC HYPER CTG
+    35 - ARC HYPER SEC
+    36 - ARC HYPER CSC
+
+    37 - SIN-VER
+    38 - COS-VER
+    39 - HAVER-SIN
+    40 - HAVER-COS
+    41 - EXSEC
+    42 - EXCSC
+END.
 */
 
 
@@ -51,18 +83,21 @@ namespace ChartViewer
 {
     public partial class MainWindow : Window
     {
-        public int NOF = -1;
+        public int NOF = -1; // number by order
+        public static double Step = 1;
 
         public double a = 0;
         public double b = 0;
         public double c = 0;
         public double d = 0;
 
-        public List<double> data = new();
-        public List<double> data_x = new();
+        public List<double> data_y = new();
 
-        public double[] y = new double[60];
-        public double[] x = new double[60];
+        public double[] y = new double[62];
+        public double[] x = DataGen.Range(-30, 30, Step);
+
+        public bool HasLaTex = false;
+        public bool HasInterpolation = false;
 
         public MainWindow()
         {
@@ -70,14 +105,8 @@ namespace ChartViewer
 
             var plt = WpfPlot1.Plot;
             plt.Style(ScottPlot.Style.Black);
-            plt.AxisAuto(0, 0.1);
-
-            for (int i = -30; i < 30; i++)
-            {
-                data_x.Add(i);
-            }
-
-            x = data_x.ToArray();
+            plt.AddCrosshair(0, 0);
+            WpfPlot1.Refresh();
         }
 
         private void a_TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -123,46 +152,50 @@ namespace ChartViewer
 
             catch { d = 0; }
         }
+        // VARIABLES INIT END
 
-        // VARIABLES INIT END
-        // VARIABLES INIT END
-        // VARIABLES INIT END
 
         // TAB 1
         private void Linear_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 1; 
             BaseFunc_Label.Content = Linear_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Quadratic_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 2; 
             BaseFunc_Label.Content = Quadratic_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Cubic_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 3; 
             BaseFunc_Label.Content = Cubic_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Biquad_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 4; 
             BaseFunc_Label.Content = Biquad_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Exponent_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 5; 
             BaseFunc_Label.Content = Exponent_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Exponential_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 6; 
             BaseFunc_Label.Content = Exponential_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         // TAB 2
@@ -170,24 +203,28 @@ namespace ChartViewer
         {
             NOF = 7; 
             BaseFunc_Label.Content = Log_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Log10_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 8; 
             BaseFunc_Label.Content = Log10_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Ln_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 9; 
             BaseFunc_Label.Content = Ln_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Pow_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 10; 
             BaseFunc_Label.Content = Pow_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         // TAB 3
@@ -195,12 +232,14 @@ namespace ChartViewer
         {
             NOF = 11; 
             BaseFunc_Label.Content = Sin_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Cos_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 12; 
             BaseFunc_Label.Content = Cos_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
 
         }
 
@@ -208,24 +247,28 @@ namespace ChartViewer
         {
             NOF = 13; 
             BaseFunc_Label.Content = Tan_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Ctg_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 14; 
             BaseFunc_Label.Content = Ctg_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Sec_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 15; 
             BaseFunc_Label.Content = Sec_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void Csc_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 16; 
             BaseFunc_Label.Content = Csc_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         // TAB 4
@@ -233,83 +276,85 @@ namespace ChartViewer
         {
             NOF = 17; 
             BaseFunc_Label.Content = ArcSin_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void ArcCos_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 18; 
             BaseFunc_Label.Content = ArcCos_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void ArcTan_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 19; 
             BaseFunc_Label.Content = ArcTan_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
         private void ArcCtg_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 20; 
             BaseFunc_Label.Content = ArcCtg_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
         private void ArcSec_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 21; 
             BaseFunc_Label.Content = ArcSec_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
 
         private void ArcCsc_Button_Click(object sender, RoutedEventArgs e)
         {
             NOF = 22; 
             BaseFunc_Label.Content = ArcCsc_Label.Content;
+            FinalFunc_Label.Content = Defs.FinalFormulaLabelView_NonLaTex(a, b, c, d, NOF);
         }
-
-        // NOF INIT END
-        // NOF INIT END
         // NOF INIT END
 
+        // INTERFACE
         private void Calculate_Button_Click(object sender, RoutedEventArgs e)
         {
             Int_TextBox.Text = NOF.ToString();
-            data.Clear();
 
-            switch (NOF)
-            {
-                case 0:
-                    break;
+            data_y = Defs.CalculateFunc(a, b, c, d, NOF, x.Length, Step);
+            y = data_y.ToArray();
 
-                case 1:
-                    data = Basic.LinearFunction(a, b);
-                    break;
+            X_Length_TextBox.Text = "X: " + x.Length.ToString();
+            Y_Length_TextBox.Text = "Y: " + y.Length.ToString();
 
-                case 2:
-                    data = Polynomial.QuadraticFunction(a, b, c);
-                    break;
-
-                case 3:
-                    data = Polynomial.CubicFunction(a, b, c, d);
-                    break;
-
-                case 4:
-                    data = Polynomial.BiquadFunction(a, b, c);
-                    break;
-            }
-
-            y = data.ToArray();
-
-            Ready_TextBox.Text = "Готово";
-            Ready_TextBox.Foreground = Brushes.Green;
+            Defs.IsReady(Ready_TextBox, true);
+            Show_Button.IsEnabled = true;
         }
 
         private void Show_Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                WpfPlot1.Plot.AddScatter(x, y);
-                WpfPlot1.Refresh();
+                if (HasInterpolation == true)
+                {
+                    (double[] smoothXs, double[] smoothYs) = ScottPlot.Statistics.Interpolation.Cubic.InterpolateXY(x, y, 200);
+
+                    WpfPlot1.Plot.AddScatter(smoothXs, smoothYs);
+                    WpfPlot1.Refresh();
+                }
+
+                else
+                {
+                    var plt = WpfPlot1.Plot.AddScatter(x, y);
+                    plt.OnNaN = ScottPlot.Plottable.ScatterPlot.NanBehavior.Ignore;
+                    WpfPlot1.Refresh();
+                }
             }
             catch
             {
-                if (x.Length == 0)
+                if (x.Length != y.Length)
+                {
+                    MessageBox.Show("Массивы не одинаковой длины");
+                }
+
+                else if (x.Length == 0)
                 {
                     MessageBox.Show("Что-то неладное с X");
                 }
@@ -326,10 +371,24 @@ namespace ChartViewer
             }
 
             NOF = -1;
-            Ready_TextBox.Text = "Не готово";
-            Ready_TextBox.Foreground = Brushes.Red;
 
+            Show_Button.IsEnabled = false;
+            Clear_Button.IsEnabled = true;
+            Defs.IsReady(Ready_TextBox, false);
+        }
 
+        private void Clear_Button_Click(object sender, RoutedEventArgs e)
+        {
+            WpfPlot1.Plot.Clear();
+            WpfPlot1.Plot.AddCrosshair(0, 0);
+            WpfPlot1.Refresh();
+
+            Clear_Button.IsEnabled = false;
+        }
+
+        private void Interpolation_CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            HasInterpolation = true;
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ChartViewer"
         xmlns:plt="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
         mc:Ignorable="d"
-        Title="Chart Viewer" Height="1000" Width="2000" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" Background="#FF111111" Foreground="White" SnapsToDevicePixels="True" UseLayoutRounding="False" SizeToContent="Height">
+        Title="Chart Viewer" Height="1000" Width="2000" WindowStartupLocation="CenterScreen" Background="#FF111111" Foreground="White" SnapsToDevicePixels="True" UseLayoutRounding="False" SizeToContent="Height">
 
     <Grid Margin="0,0,0,-4.2">
         <Grid.ColumnDefinitions>
@@ -16,13 +16,18 @@
 
         <WpfPlot Name="WpfPlot1"/>
 
-        <Grid Margin="10,10,10,465" Grid.Column="1">
+        <Grid Margin="10,10,10,0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="13*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <GroupBox Header="Перем. (вывод)" Margin="10,10,0,10" HorizontalAlignment="Left">
+            <GroupBox Header="Перем. (вывод)" Margin="10,10,0,5" HorizontalAlignment="Left" Width="103">
                 <StackPanel>
                     <Label x:Name="a_Label" Content="a = {0}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,0,5,0"/>
                     <Label x:Name="b_Label" Content="b = {0}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,0,5,0"/>
@@ -30,7 +35,7 @@
                     <Label x:Name="d_Label" Content="d = {0}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,0,5,0"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Переменные (ввод)" Margin="118,10,142,10">
+            <GroupBox Header="Переменные (ввод)" Margin="118,10,10,5" Grid.ColumnSpan="3">
                 <StackPanel>
                     <TextBox x:Name="a_TextBox" TextWrapping="Wrap" Text="" Margin="5,5,5,0" TextChanged="a_TextBox_TextChanged"/>
                     <TextBox x:Name="b_TextBox" TextWrapping="Wrap" Text="" Margin="5,5,5,0" TextChanged="b_TextBox_TextChanged"/>
@@ -38,144 +43,159 @@
                     <TextBox x:Name="d_TextBox" TextWrapping="Wrap" Text="" Margin="5,5,5,0" TextChanged="d_TextBox_TextChanged"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Кнопки управления" HorizontalAlignment="Right" Margin="0,10,10,10">
+            <GroupBox Header="Кнопки управления" Margin="2,5,3,5" Grid.Row="1" Grid.Column="1">
                 <StackPanel>
                     <Button x:Name="Calculate_Button"  Content="Расчитать" VerticalAlignment="Top" Padding="0,0,0,0" Margin="5,5,5,0" Click="Calculate_Button_Click"/>
-                    <Button x:Name="Show_Button" Content="Изобразить" Padding="0,0,0,0" Margin="5,5,5,0" Click="Show_Button_Click"/>
+                    <Button x:Name="Show_Button" Content="Изобразить" Padding="0,0,0,0" Margin="5,5,5,0" Click="Show_Button_Click" IsEnabled="False"/>
+                    <Button x:Name="Clear_Button" Content="Очистить" Padding="0,0,0,0" Margin="5,5,5,0" Click="Clear_Button_Click" IsEnabled="False"/>
                     <TextBox x:Name="Ready_TextBox" TextWrapping="Wrap" Margin="5,5,5,0" Focusable="False" Text="Не готово" HorizontalContentAlignment="Center" Foreground="#FFFF0C0C"/>
                     <TextBox x:Name="Int_TextBox" TextWrapping="Wrap" Margin="5,5,5,0" Focusable="False" Text="0" HorizontalContentAlignment="Center" Foreground="#FF868686"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Информация" Margin="10,10,10,10" Grid.Row="1">
+            <GroupBox Header="Информация" Margin="10,5,3,5" Grid.Row="1" Width="NaN">
                 <StackPanel Orientation="Vertical">
                     <Label x:Name="BaseFunc_Label" Content="Выбранный график:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" BorderThickness="5,5,5,0"/>
                     <Label x:Name="FinalFunc_Label" Content="Итоговый график:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="5,5,5,0"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox x:Name="Instruction_GroupBox" Header="Инструкция" Margin="10,10,10,10" Grid.Row="2">
-                <StackPanel Orientation="Vertical">
-                    <Label x:Name="Instruction_Label" Content="y = x^2 * 2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"/>
+            <GroupBox Header="Настройки графика" Margin="2,5,10,5" Grid.Row="1" Grid.Column="2">
+                <StackPanel>
+                    <CheckBox x:Name="Interpolation_CheckBox" Content="Интерполировать" Margin="5,5,5,0" Checked="Interpolation_CheckBox_Checked"/>
                 </StackPanel>
             </GroupBox>
+            <TabControl Grid.ColumnSpan="3" Grid.Row="2" Margin="0,10,0,10">
+                <TabItem Header="Страница 1" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid Background="#FF252525">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.ColumnSpan="1" Margin="2,5,2,5" Background="#FF191919">
+                            <Button x:Name="Linear_Button" Content="Линейная" Cursor="Hand" Click="Linear_Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Label x:Name ="Linear_Label" Content="y = ax + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Button x:Name="Quadratic_Button" Content="Квадратичная" Click="Quadratic_Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Label x:Name ="Quadratic_Label" Content="y = ax^2 + bx + c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Button x:Name="Cubic_Button" Content="Кубическая" Click="Cubic_Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Label x:Name ="Cubic_Label" Content="y = ax^3 + bx^2 + cx + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Button x:Name="Biquad_Button" Content="Биквадратная" Click="Biquad_Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Label x:Name ="Biquad_Label" Content="y = ax^4 + bx^2 + с" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Button x:Name="Exponent_Button" Content="Экспонента" Click="Exponent_Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Label x:Name ="Exponent_Label" Content="y = a * e^x + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Button x:Name="Exponential_Button" Content="Показательная" Click="Exponential_Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Label x:Name ="Exponential_Label" Content="y = a * b^x + c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Button x:Name="Pow_Button" Content="Степенная" Click="Pow_Button_Click" Margin="5,5,5,0"/>
+                            <Label x:Name ="Pow_Label" Content="y = a * x^b + c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Button x:Name="Log_Button" Content="Логарифмическая" Click="Log_Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Label x:Name ="Log_Label" Content="y = a * logb(x) + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Button x:Name="Log10_Button" Content="Логарифм (десят.)" Padding="5,5,5,1" Click="Log10_Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                            <Label x:Name ="Log10_Label" Content="y = a * log(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="5,65,5,0" Background="#FF191919" VerticalAlignment="Top" />
+
+                        <StackPanel Margin="5,237,5,0" Background="#FF191919" VerticalAlignment="Top" />
+
+                        <StackPanel Grid.ColumnSpan="1" Margin="5,5,5,0" Background="#FF191919" Grid.Column="1" VerticalAlignment="Top"/>
+
+                        <StackPanel Grid.ColumnSpan="1" Margin="2,5,2,5" Background="#FF191919" Grid.Column="1">
+                            <Button x:Name="Ln_Button" Content="Логарифм (натур.)" Padding="5,5,5,1" Click="Ln_Button_Click" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+                            <Label x:Name ="Ln_Label" Content="y = a * ln(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+                            <Button x:Name="Sin_Button" Content="Синус" VerticalAlignment="Top" Click="Sin_Button_Click" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+                            <Label x:Name ="Sin_Label" Content="y = a * sin(bx + c) + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+
+                            <Button x:Name="Cos_Button" Content="Косинус" Padding="5,5,5,1" Click="Cos_Button_Click" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+                            <Label x:Name ="Cos_Label" Content="y = a * cos(bx + c) + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+
+                            <Button x:Name="Tan_Button" Content="Тангенс" Padding="5,5,5,1" Click="Tan_Button_Click" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+                            <Label x:Name ="Tan_Label" Content="y = a * tg(bx + c) + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+
+                            <Button x:Name="Ctg_Button" Content="Котангенс" Padding="5,5,5,1" Click="Ctg_Button_Click" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+                            <Label x:Name ="Ctg_Label" Content="y = a * ctg(bx + c) + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+
+                            <Button x:Name="Sec_Button" Content="Секанс" Padding="5,5,5,1" Click="Sec_Button_Click" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+                            <Label x:Name ="Sec_Label" Content="y = a * sec(bx + c) + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+
+                            <Button x:Name="Csc_Button" Content="Косеканс" Padding="5,5,5,1" Grid.IsSharedSizeScope="True" Click="Csc_Button_Click" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+                            <Label x:Name ="Csc_Label" Content="y = a * csc(bx + c) + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Width="NaN" Height="NaN" Margin="5,5,5,0"/>
+
+                            <Button Click="ArcSin_Button_Click" Content="Арксинус" x:Name="ArcSin_Button" Margin="5,5,5,0"/>
+                            <Label VerticalContentAlignment="Center" x:Name="ArcSin_Label" HorizontalContentAlignment="Center" Content="y = a * arcsin(bx + c) + d" Margin="5,5,5,0"/>
+
+                            <Button Padding="5,5,5,1" x:Name="ArcCos_Button" Content="Арккосинус" Click="ArcCos_Button_Click" Margin="5,0,5,0"/>
+                            <Label VerticalContentAlignment="Center" Padding="5,5,5,5" x:Name="ArcCos_Label" HorizontalContentAlignment="Center" Content="y = a * arccos(bx + c) + d" Margin="5,5,5,0"/>
+
+                        </StackPanel>
+
+                        <StackPanel Margin="2,5,2,5" Grid.ColumnSpan="1" Grid.Column="2" Background="#FF191919">
+                            <Button Padding="5,5,5,1" x:Name="ArcTan_Button" Margin="5,5,5,0" Content="Арктангенс" Click="ArcTan_Button_Click"/>
+                            <Label VerticalContentAlignment="Center" Padding="5,5,5,5" x:Name="ArcTan_Label" Margin="5,5,5,0" HorizontalContentAlignment="Center" Content="y = a * arctg(bx + c) + d"/>
+
+                            <Button Padding="5,5,5,1" x:Name="ArcCtg_Button" Margin="5,5,5,0" Content="Арккотангенс" Click="ArcCtg_Button_Click"/>
+                            <Label VerticalContentAlignment="Center" Padding="5,5,5,5" x:Name="ArcCtg_Label" Margin="5,5,5,0" HorizontalContentAlignment="Center" Content="y = a * arcctg(bx + c) + d"/>
+
+                            <Button Padding="5,5,5,1" x:Name="ArcSec_Button" Margin="5,5,5,0" Content="Арксеканс" Click="ArcSec_Button_Click"/>
+                            <Label VerticalContentAlignment="Center" Padding="5,5,5,5" x:Name="ArcSec_Label" Margin="5,5,5,0" HorizontalContentAlignment="Center" Content="y = a * arcsec(bx + c) + d"/>
+
+                            <Button Padding="5,5,5,1" x:Name="ArcCsc_Button" Margin="5,5,5,0" Grid.IsSharedSizeScope="True" Content="Арккосеканс" Click="ArcCsc_Button_Click"/>
+                            <Label VerticalContentAlignment="Center" Padding="5,5,5,5" x:Name="ArcCsc_Label" Margin="5,5,5,0" HorizontalContentAlignment="Center" Content="y = a * csc(bx + c) + d"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Страница 2" Margin="2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid Background="#FF252525"/>
+                </TabItem>
+
+                <TabItem Header="Настройки"  Margin="2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid Background="#FF252525">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TabControl Margin="5,5,5,5" TabStripPlacement="Left">
+                            <TabItem Header="Оси" Margin="2,2,2,0">
+                                <Grid Background="#FF121212"/>
+                            </TabItem>
+                            <TabItem Header="Темы" Margin="2,2,2,0">
+                                <Grid Background="#FF121212">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="49*"/>
+                                        <ColumnDefinition Width="78*"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Цифры"  Margin="2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid Background="#FF252525">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="5,5,5,5" Background="#FF191919" Grid.Column="2">
+                            <TextBox x:Name="Length_TextBox" TextWrapping="Wrap" Text="Length List X and Y:" TextChanged="a_TextBox_TextChanged" Foreground="#FF868686" AllowDrop="False" Focusable="False" Margin="5,5,5,5"/>
+                            <TextBox x:Name="X_Length_TextBox" TextWrapping="Wrap" Text="70" TextChanged="a_TextBox_TextChanged" Foreground="#FF868686" AllowDrop="False" Focusable="False" Margin="10,5,10,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <TextBox x:Name="Y_Length_TextBox" TextWrapping="Wrap" Text="70" TextChanged="a_TextBox_TextChanged" Foreground="#FF868686" AllowDrop="False" Focusable="False" Margin="10,5,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5" Background="#FF191919" Grid.Column="1">
+                            <TextBox x:Name="y_list_TextBox" TextWrapping="Wrap" Text="List&lt;double&gt; Y:" TextChanged="a_TextBox_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF868686" AllowDrop="False" Focusable="False" Margin="5,5,5,0"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5" Background="#FF191919" Grid.Column="3"/>
+                        <DockPanel LastChildFill="False" Background="#FF191919" Margin="5,5,5,5">
+                            <TextBox x:Name="x_list_TextBox" TextWrapping="Wrap" Text="List&lt;double&gt; X:" TextChanged="a_TextBox_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF868686" AllowDrop="False" Focusable="False" DockPanel.Dock="Top" Height="18" Margin="5,5,5,0"/>
+                            <TextBox TextWrapping="Wrap" Text="X[0]" TextChanged="a_TextBox_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF868686" AllowDrop="False" Focusable="False" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,0"/>
+                            <TextBox x:Name="x0_TextBox" TextWrapping="Wrap" Text="70" TextChanged="a_TextBox_TextChanged" Foreground="#FF868686" AllowDrop="False" Focusable="False" Margin="0,5,5,0" VerticalAlignment="Top" DockPanel.Dock="Top"/>
+                        </DockPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
         </Grid>
-
-        <TabControl Margin="10,528,10,10" Grid.Column="1" SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Header="Страница 1" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Grid Background="#FF252525">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.ColumnSpan="1" Margin="10,10,10,346" Background="#FF191919">
-                        <Button x:Name="Linear_Button" Content="Линейная" Margin="5,5,5,0" Cursor="Hand" Click="Linear_Button_Click"/>
-                        <Label x:Name ="Linear_Label" Content="y = ax + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,5,5,0"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="10,77,10,167" Background="#FF191919" >
-                        <Button x:Name="Quadratic_Button" Content="Квадратичная" Margin="5,5,5,0" Click="Quadratic_Button_Click"/>
-                        <Label x:Name ="Quadratic_Label" Content="y = ax^2 + bx + c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,5,5,0"/>
-
-                        <Button x:Name="Cubic_Button" Content="Кубическая" Margin="5,5,5,0" Click="Cubic_Button_Click"/>
-                        <Label x:Name ="Cubic_Label" Content="y = ax^3 + bx^2 + cx + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,5,5,0"/>
-
-                        <Button x:Name="Biquad_Button" Content="Биквадратная" Margin="5,5,5,0" Click="Biquad_Button_Click"/>
-                        <Label x:Name ="Biquad_Label" Content="y = ax^4 + bx^2 + с" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,5,5,0"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="10,256,10,10" Background="#FF191919" >
-                        <Button x:Name="Exponent_Button" Content="Экспонента" Margin="5,5,5,0" Click="Exponent_Button_Click"/>
-                        <Label x:Name ="Exponent_Label" Content="y = e^x" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-
-                        <Button x:Name="Exponential_Button" Content="Показательная" Margin="5,5,5,0" Click="Exponential_Button_Click"/>
-                        <Label x:Name ="Exponential_Label" Content="y = a^x + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,5,5,0"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.ColumnSpan="1" Margin="10,10,10,220" Background="#FF191919" Grid.Column="1">
-                        <Button x:Name="Log_Button" Content="Логарифмическая" VerticalAlignment="Top" Margin="5,5,5,0" Click="Log_Button_Click"/>
-                        <Label x:Name ="Log_Label" Content="y = a * log(b)x + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="5,5,5,0"/>
-
-                        <Button x:Name="Log10_Button" Content="Логарифм (десят.)" Padding="5,5,5,1" Margin="5,0,5,5" Click="Log10_Button_Click"/>
-                        <Label x:Name ="Log10_Label" Content="y = a * log(10)x + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-
-                        <Button x:Name="Ln_Button" Content="Логарифм (натур.)" Padding="5,5,5,1" Margin="5,5,5,0" Click="Ln_Button_Click"/>
-                        <Label x:Name ="Ln_Label" Content="y = a * ln(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.ColumnSpan="1" Margin="10,10,10,10" Background="#FF191919" Grid.Column="2">
-                        <Button x:Name="Sin_Button" Content="Синус" VerticalAlignment="Top" Margin="5,5,5,0" Click="Sin_Button_Click"/>
-                        <Label x:Name ="Sin_Label" Content="y = a * log(b)x + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="5,5,5,0"/>
-
-                        <Button x:Name="Cos_Button" Content="Косинус" Padding="5,5,5,1" Margin="5,0,5,5" Click="Cos_Button_Click"/>
-                        <Label x:Name ="Cos_Label" Content="y = a * log(10)x + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-
-                        <Button x:Name="Tan_Button" Content="Тангенс" Padding="5,5,5,1" Margin="5,5,5,0" Click="Tan_Button_Click"/>
-                        <Label x:Name ="Tan_Label" Content="y = a * ln(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-
-                        <Button x:Name="Ctg_Button" Content="Котангенс" Padding="5,5,5,1" Margin="5,5,5,0" Click="Ctg_Button_Click"/>
-                        <Label x:Name ="Ctg_Label" Content="y = a * ln(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-
-                        <Button x:Name="Sec_Button" Content="Секанс" Padding="5,5,5,1" Margin="5,5,5,0" Click="Sec_Button_Click"/>
-                        <Label x:Name ="Sec_Label" Content="y = a * ln(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-
-                        <Button x:Name="Csc_Button" Content="Косеканс" Padding="5,5,5,1" Margin="5,5,5,0" Grid.IsSharedSizeScope="True" Click="Csc_Button_Click"/>
-                        <Label x:Name ="Csc_Label" Content="y = a * ln(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.ColumnSpan="1" Margin="10,203,10,155" Background="#FF191919" Grid.Column="1">
-                        <Button x:Name="Pow_Button" Content="Степенная" VerticalAlignment="Top" Margin="5,5,5,0" Click="Pow_Button_Click"/>
-                        <Label x:Name ="Pow_Label" Content="y = a * x^b + c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="5,5,5,0"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.ColumnSpan="1" Margin="9,10,10,10" Background="#FF191919" Grid.Column="3">
-                        <Button x:Name="ArcSin_Button" Content="Арксинус" VerticalAlignment="Top" Margin="5,5,5,0" Click="ArcSin_Button_Click"/>
-                        <Label x:Name ="ArcSin_Label" Content="y = a * log(b)x + d" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="5,5,5,0"/>
-
-                        <Button x:Name="ArcCos_Button" Content="Арккосинус" Padding="5,5,5,1" Margin="5,0,5,5" Click="ArcCos_Button_Click"/>
-                        <Label x:Name ="ArcCos_Label" Content="y = a * log(10)x + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-
-                        <Button x:Name="ArcTan_Button" Content="Арктангенс" Padding="5,5,5,1" Margin="5,5,5,0" Click="ArcTan_Button_Click"/>
-                        <Label x:Name ="ArcTan_Label" Content="y = a * ln(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-
-                        <Button x:Name="ArcCtg_Button" Content="Арккотангенс" Padding="5,5,5,1" Margin="5,5,5,0" Click="ArcCtg_Button_Click"/>
-                        <Label x:Name ="ArcCtg_Label" Content="y = a * ln(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-
-                        <Button x:Name="ArcSec_Button" Content="Арксеканс" Padding="5,5,5,1" Margin="5,5,5,0" Click="ArcSec_Button_Click"/>
-                        <Label x:Name ="ArcSec_Label" Content="y = a * ln(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-
-                        <Button x:Name="ArcCsc_Button" Content="Арккосеканс" Padding="5,5,5,1" Margin="5,5,5,0" Grid.IsSharedSizeScope="True" Click="ArcCsc_Button_Click"/>
-                        <Label x:Name ="ArcCsc_Label" Content="y = a * ln(x) + b" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,5,5,5" Margin="5,5,5,0"/>
-                    </StackPanel>
-                </Grid>
-            </TabItem>
-
-            <TabItem Header="Страница 2" Margin="2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Grid Background="#FF252525"/>
-            </TabItem>
-
-            <TabItem Header="Настройки"  Margin="2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Grid Background="#FF252525">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.ColumnSpan="1" Margin="10,10,10,10" Background="#FF191919">
-                        <Button x:Name="Linear_Button1" Content="Линейная" Margin="5,5,5,0" Cursor="Hand" Click="Linear_Button_Click"/>
-                        <TextBox x:Name="Int_TextBox_Copy" TextWrapping="Wrap" Focusable="False" Text="0" HorizontalContentAlignment="Center" Foreground="#FF868686" Margin="5,5,5,5"/>
-                    </StackPanel>
-
-                </Grid>
-            </TabItem>
-
-            <TabItem Header="Инфо"  Margin="2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Grid Background="#FF252525">
-
-                </Grid>
-            </TabItem>
-        </TabControl>
     </Grid>
 </Window>
