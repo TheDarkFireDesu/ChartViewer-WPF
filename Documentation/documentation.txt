@@ -1,0 +1,71 @@
+﻿FUNCTION:
+    BASIC - (1 / 1)
+    POLYNOMINAL - ( 3 / 3)
+    EXPONENTIAL - ( 3 / 3)
+    LOGARITHMIC - ( 3 / 3)
+    POWER - (1 / 1)
+
+    SPECIAL - (1 / 1)
+    
+    BASE TRIGONOMETRIC - (6 / 6)
+    ADVANCED TRIGONOMETRIC - ( 6 / 6)
+    REVERSE TRIGONOMETRIC - (4 / 6)
+
+    HYPERBOLIC - (6 / 6)
+    REVERSE HYPERBOLIC - (6 / 6)
+END.
+
+NUMBER OF FUNC:
+    1 - LINEAR
+
+    2 - QUADRATIC
+    3 - CUBIC
+    4 - BIQUAD
+
+    5 - EXP
+    6 - EXPONENTIAL
+
+    7 - LOG
+    8 - LOG10
+    9 - LN
+
+    10 - POW
+
+    11 - SIN
+    12 - COS
+    13 - TAN
+    14 - CTG
+    15 - SEC
+    16 - CSC
+
+    17 - ARCSIN
+    18 - ARCCOS
+    19 - ARCTAN
+    20 - ARCCTG
+    21 - ARCSEC
+    22 - ARCCSC
+
+    23 - ERROR
+    24 - ABS
+
+    25 - HYPER SIN
+    26 - HYPER COS
+    27 - HYPER TG
+    28 - HYPER CTG
+    29 - HYPER SEC
+    30 - HYPER CSC
+    
+    31 - ARC HYPER SIN
+    32 - ARC HYPER COS
+    33 - ARC HYPER TG
+    34 - ARC HYPER CTG
+    35 - ARC HYPER SEC
+    36 - ARC HYPER CSC
+
+    37 - SIN-VER
+    38 - COS-VER
+    39 - HAVER-SIN
+    40 - HAVER-COS
+    41 - EXSEC
+    42 - EXCSC
+END.

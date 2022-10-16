@@ -9,13 +9,13 @@ namespace ChartViewer
 {
     public class Basic
     {
-        public static List<double> LinearFunction(double a, double b, int Length, double Step)
+        public static List<double> LinearFunction(double a, double b, int Length)
         {
             
             double y;
             List<double> data = new();
 
-            for (double x = -1 * (Length / 2); x < Length / 2; x += Step)
+            for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
                 y = a * x + b;
                 data.Add(y);
