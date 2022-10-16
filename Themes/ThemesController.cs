@@ -25,7 +25,7 @@ namespace REghZyFramework.Themes
         }
         public static void SetTheme(ThemeTypes theme)
         {
-            string themeName = null;
+            string themeName = "LightTheme";
             CurrentTheme = theme;
             switch (theme)
             {
