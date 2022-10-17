@@ -1,11 +1,17 @@
 ﻿namespace ChartViewer
 {
-    public class Hyperbolic
+    public static class Hyperbolic
     {
-        public static List<double> HyperSinFunction(double a, double b, double c, double d, int Length)
+        static double a = Properties.Settings.Default.ValueA;
+        static double b = Properties.Settings.Default.ValueB;
+        static double c = Properties.Settings.Default.ValueC;
+        static double d = Properties.Settings.Default.ValueD;
+
+        static int Length = Properties.Settings.Default.Length;
+        public static Collection<double> HyperSinFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -16,24 +22,24 @@
             return data;
         }
 
-        public static List<double> HyperCosFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> HyperCosFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
                 // y = a * Cosh(bx + c) + d
-                y = a * Math.Cosh(b * x + c) + d;
+                y = (a * Math.Cosh(b * x + c) + d);
                 data.Add(y);
             }
             return data;
         }
 
-        public static List<double> HyperTgFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> HyperTgFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -44,10 +50,10 @@
             return data;
         }
 
-        public static List<double> HyperCtgFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> HyperCtgFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -58,10 +64,10 @@
             return data;
         }
 
-        public static List<double> HyperSecFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> HyperSecFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -71,10 +77,10 @@
             }
             return data;
         }
-        public static List<double> HyperCscFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> HyperCscFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {

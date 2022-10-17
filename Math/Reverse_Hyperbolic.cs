@@ -1,11 +1,18 @@
 ﻿namespace ChartViewer
 {
-    public class Reverse_Hyperbolic
+    public static class ReverseHyperbolic
     {
-        public static List<double> AreaSinFunction(double a, double b, double c, double d, int Length)
+        static double a = Properties.Settings.Default.ValueA;
+        static double b = Properties.Settings.Default.ValueB;
+        static double c = Properties.Settings.Default.ValueC;
+        static double d = Properties.Settings.Default.ValueD;
+
+        static int Length = Properties.Settings.Default.Length;
+
+        public static Collection<double> AreaSinFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -16,10 +23,10 @@
             return data;
         }
 
-        public static List<double> AreaCosFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> AreaCosFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -30,10 +37,10 @@
             return data;
         }
 
-        public static List<double> AreaTgFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> AreaTgFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -44,12 +51,12 @@
             return data;
         }
 
-        public static List<double> AreaCtgFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> AreaCtgFunction()
         {
 
 
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -60,10 +67,10 @@
             return data;
         }
 
-        public static List<double> AreaSecFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> AreaSecFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -73,10 +80,10 @@
             }
             return data;
         }
-        public static List<double> AreaCscFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> AreaCscFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {

@@ -1,12 +1,19 @@
 ﻿namespace ChartViewer
 {
-    public class Exponential
+    public static class Exponential
     {
-        public static List<double> ExponentFunction(double a, double b, int Length)
+        static double a = Properties.Settings.Default.ValueA;
+        static double b = Properties.Settings.Default.ValueB;
+        static double c = Properties.Settings.Default.ValueC;
+        static double d = Properties.Settings.Default.ValueD;
+
+        static int Length = Properties.Settings.Default.Length;
+
+        public static Collection<double> ExponentFunction()
         {
             double y;
 
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -18,12 +25,12 @@
             return data;
         }
 
-        public static List<double> ExponentcialFunction(double a, double b, double c, int Length)
+        public static Collection<double> ExponentcialFunction()
         {
             double xpow;
             double y;
 
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {

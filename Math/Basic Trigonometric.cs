@@ -1,11 +1,18 @@
 ﻿namespace ChartViewer
 {
-    public class Trigonometric
+    public static class Trigonometric
     {
-        public static List<double> SinFunction(double a, double b, double c, double d, int Length)
+        static double a = Properties.Settings.Default.ValueA;
+        static double b = Properties.Settings.Default.ValueB;
+        static double c = Properties.Settings.Default.ValueC;
+        static double d = Properties.Settings.Default.ValueD;
+
+        static int Length = Properties.Settings.Default.Length;
+
+        public static Collection<double> SinFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -16,10 +23,10 @@
             return data;
         }
 
-        public static List<double> CosFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> CosFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -30,10 +37,10 @@
             return data;
         }
 
-        public static List<double> TgFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> TgFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -44,11 +51,11 @@
             return data;
         }
 
-        public static List<double> CtgFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> CtgFunction()
         {
             double y;
 
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -59,10 +66,10 @@
             return data;
         }
 
-        public static List<double> SecFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> SecFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -73,10 +80,10 @@
             return data;
         }
 
-        public static List<double> CscFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> CscFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {

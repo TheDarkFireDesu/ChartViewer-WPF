@@ -1,11 +1,17 @@
 ﻿namespace ChartViewer
 {
-    public class Logarithmic
+    public static class Logarithmic
     {
-        public static List<double> LogFunction(double a, double b, double c, int Length)
+        static double a = Properties.Settings.Default.ValueA;
+        static double b = Properties.Settings.Default.ValueB;
+        static double c = Properties.Settings.Default.ValueC;
+
+        static int Length = Properties.Settings.Default.Length;
+
+        public static Collection<double> LogFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = 0.0001; x != Length + 0.0001; x++)
             {
@@ -16,10 +22,10 @@
             return data;
         }
 
-        public static List<double> LogDecimalFunction(double a, double c, int Length)
+        public static Collection<double> LogDecimalFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = 0.0001; x != Length + 0.0001; x++)
             {
@@ -30,10 +36,10 @@
             return data;
         }
 
-        public static List<double> LogNaturalFunction(double a, double c, int Length)
+        public static Collection<double> LogNaturalFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = 0.0001; x != Length + 0.0001; x++)
             {

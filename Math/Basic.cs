@@ -1,26 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChartViewer
+﻿namespace ChartViewer
 {
-    public class Basic
-    {
-        public static List<double> LinearFunction(double a, double b, int Length)
-        {
-            
-            double y;
-            List<double> data = new();
+	public static class Basic
+	{
+        static double a = Properties.Settings.Default.ValueA;
+        static double b = Properties.Settings.Default.ValueB;
+        static double c = Properties.Settings.Default.ValueC;
 
-            for (double x = -1 * (Length / 2); x < Length / 2; x++)
-            {
-                y = a * x + b;
-                data.Add(y);
-            }
-            return data;
-        }
-    }
+        static int Length = Properties.Settings.Default.Length;
+
+        public static Collection<double> LinearFunction()
+		{
+
+			double y;
+			Collection<double> data = new();
+
+			for (double x = -1 * ((double)Length / 2); x < Length / 2; x++)
+			{
+				y = a * x + b;
+				data.Add(y);
+			}
+			return data;
+		}
+	}
 }

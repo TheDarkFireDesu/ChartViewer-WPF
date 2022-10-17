@@ -1,12 +1,19 @@
 ﻿namespace ChartViewer
 {
-    public class Power
+    public static class Power
     {
-        public static List<double> PowFunction(double a, double b, double c, int Length)
+        static double a = Properties.Settings.Default.ValueA;
+        static double b = Properties.Settings.Default.ValueB;
+        static double c = Properties.Settings.Default.ValueC;
+        static double d = Properties.Settings.Default.ValueD;
+
+        static int Length = Properties.Settings.Default.Length;
+
+        public static Collection<double> PowFunction()
         {
             double xpow;
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {

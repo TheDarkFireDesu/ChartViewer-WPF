@@ -1,11 +1,18 @@
 ﻿namespace ChartViewer
 {
-    public class Polynomial
+    public static class Polynomial
     {
-        public static List<double> QuadraticFunction(double a, double b, double c, int Length)
+        static double a = Properties.Settings.Default.ValueA;
+        static double b = Properties.Settings.Default.ValueB;
+        static double c = Properties.Settings.Default.ValueC;
+        static double d = Properties.Settings.Default.ValueD;
+
+        static int Length = Properties.Settings.Default.Length;
+
+        public static Collection<double> QuadraticFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -16,24 +23,24 @@
             return data;
         }
 
-        public static List<double> CubicFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> CubicFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
                 // y = ax^3 + bx^2 + cx + d
-                y = a * Math.Pow(x, 3) + b * Math.Pow(x,2) + c * x + d;
+                y = a * Math.Pow(x, 3) + b * Math.Pow(x, 2) + c * x + d;
                 data.Add(y);
             }
-            return data; 
+            return data;
         }
 
-        public static List<double> BiquadFunction(double a, double b, double c, int Length)
+        public static Collection<double> BiquadFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {

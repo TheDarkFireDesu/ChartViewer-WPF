@@ -1,11 +1,18 @@
 ﻿namespace ChartViewer
 {
-    public class Advanced_Trigonometric
+    public static class AdvancedTrigonometric
     {
-        public static List<double> VerSinFunction(double a, double b, double c, double d, int Length)
+        static double a = Properties.Settings.Default.ValueA;
+        static double b = Properties.Settings.Default.ValueB;
+        static double c = Properties.Settings.Default.ValueC;
+        static double d = Properties.Settings.Default.ValueD;
+
+        static int Length = Properties.Settings.Default.Length;
+
+        public static Collection<double> VerSinFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -16,10 +23,10 @@
             return data;
         }
 
-        public static List<double> VerCosFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> VerCosFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -30,10 +37,10 @@
             return data;
         }
 
-        public static List<double> HaverSinFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> HaverSinFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -44,13 +51,13 @@
             }
             return data;
         }
-        public static List<double> HaverCosFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> HaverCosFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
-            {   
+            {
                 // havercos = vercos / 2
                 // y = a * sin(bx + c) + d
                 y = (1 - (a * Math.Cos(b * x + c) + d)) / 2;
@@ -59,10 +66,10 @@
             return data;
         }
 
-        public static List<double> ExSecFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> ExSecFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
@@ -74,10 +81,10 @@
             return data;
         }
 
-        public static List<double> ExCscFunction(double a, double b, double c, double d, int Length)
+        public static Collection<double> ExCscFunction()
         {
             double y;
-            List<double> data = new();
+            Collection<double> data = new();
 
             for (double x = -1 * (Length / 2); x < Length / 2; x++)
             {
