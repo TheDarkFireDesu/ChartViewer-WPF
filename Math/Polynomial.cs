@@ -14,7 +14,7 @@
             double y;
             Collection<double> data = new();
 
-            for (double x = -1 * (Length / 2); x < Length / 2; x++)
+            for (double x = -1 * ((double)Length / 2); x < Length / 2; x++)
             {
                 // y = ax^2 + bx + c
                 y = a * Math.Pow(x, 2) + b * x + c;
@@ -28,7 +28,7 @@
             double y;
             Collection<double> data = new();
 
-            for (double x = -1 * (Length / 2); x < Length / 2; x++)
+            for (double x = -1 * ((double)Length / 2); x < Length / 2; x++)
             {
                 // y = ax^3 + bx^2 + cx + d
                 y = a * Math.Pow(x, 3) + b * Math.Pow(x, 2) + c * x + d;
@@ -42,7 +42,7 @@
             double y;
             Collection<double> data = new();
 
-            for (double x = -1 * (Length / 2); x < Length / 2; x++)
+            for (double x = -1 * ((double)Length / 2); x < Length / 2; x++)
             {
                 // y = ax^4 + bx^2 + с
                 y = a * Math.Pow(x, 4) + b * Math.Pow(x, 2) + c;

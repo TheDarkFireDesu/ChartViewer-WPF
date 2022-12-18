@@ -1,6 +1,6 @@
 ﻿namespace ChartViewer
 {
-    public class ReverseTrigonometric
+    public static class ReverseTrigonometric
     {
         static double a = Properties.Settings.Default.ValueA;
         static double b = Properties.Settings.Default.ValueB;

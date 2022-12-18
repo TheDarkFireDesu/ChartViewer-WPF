@@ -2,20 +2,31 @@
 {
     internal class CheckBoolean
     {
-        public static void IsReady(TextBox TextBox, bool Status)
+        public static void IsReady(TextBox textBox, bool status)
         {
-            if (Status)
+            if (status)
             {
-                TextBox.Text = "Готово";
-                TextBox.Foreground = Brushes.Green;
+                textBox.Text = "Готово";
+                textBox.Foreground = Brushes.Green;
             }
 
             else
             {
-                TextBox.Text = "Не готово";
-                TextBox.Foreground = Brushes.Red;
+                textBox.Text = "Не готово";
+                textBox.Foreground = Brushes.Red;
             }
+        }
 
+        public static void IsActive(Button button, bool status)
+        {
+            if (status)
+            {
+                button.IsEnabled = true;
+            }
+            else
+            {
+                button.IsEnabled = false;
+            }
         }
     }
 }

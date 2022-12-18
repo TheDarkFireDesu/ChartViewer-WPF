@@ -4,7 +4,6 @@
 	{
         static double a = Properties.Settings.Default.ValueA;
         static double b = Properties.Settings.Default.ValueB;
-        static double c = Properties.Settings.Default.ValueC;
 
         static int Length = Properties.Settings.Default.Length;
 
